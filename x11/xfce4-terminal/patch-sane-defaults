@@ -1,0 +1,47 @@
+--- terminal/terminal-preferences.c.orig	2019-08-17 14:45:16 UTC
++++ terminal/terminal-preferences.c
+@@ -805,7 +805,7 @@ terminal_preferences_class_init (Termina
+       g_param_spec_boolean ("font-use-system",
+                             NULL,
+                             "FontUseSystem",
+-                            FALSE,
++                            TRUE,
+                             G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+ 
+   /**
+@@ -977,7 +977,7 @@ terminal_preferences_class_init (Termina
+                          NULL,
+                          "MiscTabPosition",
+                          GTK_TYPE_POSITION_TYPE,
+-                         GTK_POS_TOP,
++                         GTK_POS_BOTTOM,
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+ 
+   /**
+@@ -1037,7 +1037,7 @@ terminal_preferences_class_init (Termina
+       g_param_spec_boolean ("misc-slim-tabs",
+                             NULL,
+                             "MiscSlimTabs",
+-                            FALSE,
++                            TRUE,
+                             G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+ 
+   /**
+--- terminal/terminal-window.c.orig	2019-08-17 14:40:11 UTC
++++ terminal/terminal-window.c
+@@ -377,11 +377,11 @@ static const GtkActionEntry action_entri
+     { "reset", NULL, N_ ("_Reset"), NULL, NULL, G_CALLBACK (terminal_window_action_reset), },
+     { "reset-and-clear", NULL, N_ ("_Clear Scrollback and Reset"), NULL, NULL, G_CALLBACK (terminal_window_action_reset_and_clear), },
+   { "tabs-menu", NULL, N_ ("T_abs"), NULL, NULL, NULL, },
+-    { "prev-tab", "go-previous", N_ ("_Previous Tab"), "<control>Page_Up", N_ ("Switch to previous tab"), G_CALLBACK (terminal_window_action_prev_tab), },
+-    { "next-tab", "go-next", N_ ("_Next Tab"), "<control>Page_Down", N_ ("Switch to next tab"), G_CALLBACK (terminal_window_action_next_tab), },
++    { "prev-tab", "go-previous", N_ ("_Previous Tab"), "<shift>Left", N_ ("Switch to previous tab"), G_CALLBACK (terminal_window_action_prev_tab), },
++    { "next-tab", "go-next", N_ ("_Next Tab"), "<shift>Right", N_ ("Switch to next tab"), G_CALLBACK (terminal_window_action_next_tab), },
+     { "last-active-tab", NULL, N_ ("Last _Active Tab"), NULL, N_ ("Switch to last active tab"), G_CALLBACK (terminal_window_action_last_active_tab), },
+-    { "move-tab-left", NULL, N_ ("Move Tab _Left"), "<control><shift>Page_Up", NULL, G_CALLBACK (terminal_window_action_move_tab_left), },
+-    { "move-tab-right", NULL, N_ ("Move Tab _Right"), "<control><shift>Page_Down", NULL, G_CALLBACK (terminal_window_action_move_tab_right), },
++    { "move-tab-left", NULL, N_ ("Move Tab _Left"), "<control><shift>Left", NULL, G_CALLBACK (terminal_window_action_move_tab_left), },
++    { "move-tab-right", NULL, N_ ("Move Tab _Right"), "<control><shift>Right", NULL, G_CALLBACK (terminal_window_action_move_tab_right), },
+   { "help-menu", NULL, N_ ("_Help"), NULL, NULL, NULL, },
+     { "contents", "help-browser", N_ ("_Contents"), "F1", N_ ("Display help contents"), G_CALLBACK (terminal_window_action_contents), },
+     { "about", "help-about", N_ ("_About"), NULL, NULL, G_CALLBACK (terminal_window_action_about), },

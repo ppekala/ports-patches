@@ -1,0 +1,24 @@
+--- ./src/playlist.cpp.orig	2013-02-23 15:22:32.000000000 +0100
++++ src/playlist.cpp	2013-02-23 15:30:02.000000000 +0100
+@@ -853,20 +853,7 @@
+ }
+ 
+ bool Playlist::maybeSave() {
+-	if (!isModified()) return true;
+-
+-	int res = QMessageBox::question( this,
+-				tr("Playlist modified"),
+-                tr("There are unsaved changes, do you want to save the playlist?"),
+-                QMessageBox::Yes,
+-                QMessageBox::No,
+-                QMessageBox::Cancel);
+-
+-	switch (res) {
+-		case QMessageBox::No : return true; // Discard changes
+-		case QMessageBox::Cancel : return false; // Cancel operation
+-		default : return save();
+-	}
++	return true;
+ }
+ 
+ void Playlist::playCurrent() {
